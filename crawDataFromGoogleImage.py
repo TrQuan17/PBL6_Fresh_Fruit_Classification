@@ -10,7 +10,7 @@ import os
 def SetFolderPath(key_search):
     key_search_process = unidecode(key_search.lower().replace(' ', '_'))
     current_path = os.path.abspath(os.getcwd())
-    return os.path.join(current_path,'data', key_search_process)
+    return os.path.join(current_path,'Dataset', key_search_process)
 
 def CreateFolder(key_search):
     create_path = SetFolderPath(key_search)
@@ -48,8 +48,8 @@ def CrawImageData(key_search, max_image):
     
     img_count = 0
     while img_count < max_image:
-        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         browser.implicitly_wait(30)
+        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         
         encode_image_urls = browser.find_elements(By.CSS_SELECTOR, 'div[class="bRMDJf islir"]')
         
@@ -65,20 +65,20 @@ def CrawImageData(key_search, max_image):
 
 if __name__ == '__main__':
     key_search = [
-        'quả chuối',
-        'quả táo',
-        'quả xoài',
-        'quả thanh long',
-        'quả cam',
-        'quả lê',
-        'quả ổi',
-        'quả đào',
-        'quả bơ',
-        'quả cà chua'
+        'fresh banana',
+        'fresh apple',
+        'fresh mango',
+        'fresh dragonfruit',
+        'fresh orange',
+        'fresh pear',
+        'fresh guava',
+        'fresh peach',
+        'fresh avocado',
+        'fresh tomato'
     ]
     
     for i in key_search:
         CreateFolder(i)
-        CrawImageData(i, 100)
+        CrawImageData(i, 1000)
     
     
